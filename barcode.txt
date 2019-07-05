@@ -1,0 +1,52 @@
+
+// Initial get request
+
+{
+    [
+    {
+        "MaterialName": "Material1",
+        "MaterialId": "0000000000000000ABCDA001",
+        "LocationName": "RWH_S1_SZ_AL1",
+        "LocationId": "00000000000000001111A001",
+        "Quantity": "50",
+        "DeliveryLocationName": "IN4_SEC1",
+        "DeliveryLocationId": "00000000000000003333C001"
+    },
+    {
+        "MaterialName": "Material2",
+        "MaterialId": "0000000000000000ABCDB001",
+        "LocationName": "RWH_S1_SZ_AL2",
+        "LocationId": "00000000000000001111A001",
+        "Quantity": "10",
+        "DeliveryLocationName": "IN4_SEC1",
+        "DeliveryLocationId": "00000000000000003333C001"
+    },
+    {
+        "MaterialName": "Material3",
+        "MaterialId": "0000000000000000ABCDC001",
+        "LocationName": "RWH_S1_SZ_AL3",
+        "LocationId": "00000000000000002222B001",
+        "Quantity": "30",
+        "DeliveryLocationName": "IN4_SEC1",
+        "DeliveryLocationId": "00000000000000003333C001"
+    },
+    {
+        "MaterialName": "Material4",
+        "MaterialId": "0000000000000000ABCDD001",
+        "LocationName": "RWH_S1_SZ_AL4",
+        "LocationId": "00000000000000002222B001",
+        "Quantity": "20",
+        "DeliveryLocationName": "IN4_SEC1",
+        "DeliveryLocationId": "00000000000000003333C001"
+    },
+    {
+        "MaterialName": "Material5",
+        "MaterialId": "0000000000000000ABCDE001",
+        "LocationName": "RWH_S1_SZ_AL5",
+        "LocationId": "00000000000000002222B001",
+        "Quantity": "40",
+        "DeliveryLocationName": "IN4_SEC1",
+        "DeliveryLocationId": "00000000000000003333C001"
+    }
+]
+}

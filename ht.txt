@@ -1,0 +1,290 @@
+//for the diesel data
+
+// var new1 = [ Diesel.find({}) ];
+  
+
+// Promise.all(new1)
+// .then((result) => {
+//    //console.log(result);
+// // console.log(result[0][0].Date);
+//    //var dt1 = JSON.stringify(dt);
+//    //console.log(dt);
+
+//     if(num == 0)
+//     {
+//     j1 = {
+//         "time" : result[0][num].Time,
+//         "date" : result[0][num].Date,
+//         "dieselConsumed" : result[0][num].HSD_Main_Out
+//     }
+//   }
+//   else{
+//     var diff = result[0][num].HSD_Main_Out - result[0][low].HSD_Main_Out;
+    
+
+//     j1 = {
+//       "time" : result[0][num].Time,
+//       "date" : result[0][num].Date,
+//       "dieselConsumed" : diff
+//   }
+
+//   }
+//     console.log(j1);
+//   res.send(j1);
+// })
+// .catch((err) => {
+//   res.status(500).send(err);
+// })
+
+
+// //for the lpg data
+
+// var new1 = [ Lpg.find({}) ];
+  
+
+// Promise.all(new1)
+// .then((result) => {
+//   // console.log(result);
+//  console.log(result[0][num].Date);
+//    //var dt1 = JSON.stringify(dt);
+//    //console.log(dt);
+//    console.log(result[0][num].);
+//    console.log(result[0][num]);
+
+//     if(num == 0)
+//     {
+//     j1 = {
+//         "time" : result[0][num].Time,
+//         "date" : result[0][num].Date,
+//         "dieselConsumed" : result[0][num].
+//     }
+//   }
+//   else{
+//     var diff = result[0][num]. - result[0][low].;
+    
+
+//     j1 = {
+//       "time" : result[0][num].Time,
+//       "date" : result[0][num].Date,
+//       "dieselConsumed" : diff
+//   }
+
+//   }
+//     console.log(j1);
+//   res.send(j1);
+// })
+// .catch((err) => {
+//   res.status(500).send(err);
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Function to connect to database and execute query
+var  executeQuery = function(res, query){             
+     sql.connect(dbConfig,  (err) => {
+         if (err) {   
+                     console.log("Error while connecting database :- " + err);
+                     res.send(err);
+                  }
+                  else {
+                         // create Request object
+                         var request = new sql.Request();
+                         // query to the database
+                         request.query(query,  (err, result) => {
+                           if (err) {
+                                      console.log("Error while querying database :- " + err);
+                                      res.send(err);
+                                     }
+                                     else {
+                                       res.send(result);
+                                            }
+                               });
+                       }
+      });           
+}
+
+//GET API
+app.get("/api/user1", function(req , res){
+                var query = "select P1KVA,P2KVA,P3KVA,P1PF,P2PF,P3PF,TOTPF,ImWH from dbo.sim_data";
+  
+                executeQuery (res, query);
+});
+
+
+//Whenever someone connects this gets executed
+
+
+
+
+
+
+
+
+
+
+  var arr = [];
+     //console.log result);
+     //console.log result[0][num].Date);
+     //console.log(dt);
+     //var dt1 = JSON.stringify(dt);
+      if(num == 0)
+      {
+        
+      j1 = {
+          "time" : result[0][num].Time,
+          "date" : result[0][num].Date,
+          "powerConsumed" : result[0][num].power_consumed
+      }
+      j2={
+        "time" : result[1][num].Time,
+        "date" : result[1][num].Date,
+        "dieselConsumed" : result[1][num].HSD_Main_Out
+      }
+      j3= {
+        "time" : result[2][num].Time,
+        "date" : result[2][num].Date,
+        "lpgConsumed" : result[2][num].IN5_LPG
+      }
+      arr = [j1,j2,j3];
+     
+
+    }
+    else{
+      var diff = result[0][num].power_consumed - result[0][low].power_consumed;
+      var diff1 = result[1][num].HSD_Main_Out - result[1][low].HSD_Main_Out;
+      var diff2 = result[2][num].IN5_LPG - result[2][low].IN5_LPG;
+      
+     
+      
+      
+      j1 = {
+        "time" : result[0][num].Time,
+        "date" : result[0][num].Date ,
+        "powerConsumed" : diff
+    },
+  
+
+      j2 = {
+        "time" : result[1][num].Time,
+        "date" : result[1][num].Date ,
+        "dieselConsumed" : diff1
+    },
+      j3 = {
+       "time" : result[2][num].Time,
+       "date"  :result[2][num].Date ,
+       "lpgConsumed" : diff2
+    }
+  
+    arr= [j1,j2,j3];
+  
+
+    }
+      console.log(arr);
+     res.send(arr);
+
+
+
+     app.get('/api/user/sort',(req,res)=>{
+var dt = "0018-08-01T00:00:00:000z";
+ var w = [ Data.find({}).sort({"Sno": 'asc'}),
+  Data.find({"Date" : dt }).sort({"Sno":'asc'})];
+  Promise.all(w)
+  .then((resp)=>{
+    res.send(resp);
+    console.log(resp);
+  })
+})
+
+ // query to the database
+                                  // request.query(query1, function (err,result1) {
+                                  //   if (err) {
+                                  //              console.log("Error while querying database :- " + err);
+                                  //              res.send(err);
+                                  //             }
+                                  //             else {
+                                  //               console.log (result1);
+                                  //               var length = result1.length;
+                                  //               console.log(length);
+                                  //               var i ;
+                                  //               for(i=0;i<length;i++){
+                                  //                 var info1= new Lpg({
+                                  //                     Sno : i,
+                                  //                     Time : result1[i].Time,
+                                  //                     Date : result1[i].Date,
+                                  //                     IN5_LPG : result1[i].IN5_LPG
+                                  //                 })
+                                  //                  Lpg.create(info1)
+                                  //                 .then(function(res,err){
+                                  //                     if(err) console.log(err);
+                                  //                    else 
+                                  //                    console.log('doc1 is saved');
+                                  //                 });
+                                              
+                                  //               }
+                                                
+                                  //                    }
+
+                                                    
+                                                     
+
+                                  //       });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                   var  j1 = new Data( {
+          ID : result[0][x].ID,
+          Time : result[0][x].Time,
+          Date : result[0][x].Date,
+          Phase_1_volt_amps: result[0][x].Phase_1_volt_amps,
+          Phase_1_power: result[0][x].Phase_1_power,
+          Total_system_power_factor: result[0][x].Total_system_power_factor,
+          Phase_2_volt_amps: result[0][x].Phase_2_volt_amps,
+          Phase_2_power: result[0][x].Phase_2_power,
+          Phase_3_power: result[0][x].Phase_3_power,
+          power_consumed : result[0][x].power_consumed,
+          Phase_3_volt_amps : result[0][x].Phase_3_volt_amps,
+          
+
+      });
+
+
+
+
+       var  j1 = new Data( {
+          ID : result[0][x].ID,
+          Time : result[0][x].Time,
+          Date : result[0][x].Date,
+          Phase_1_volt_amps: result[0][x].Phase_1_volt_amps,
+          Phase_1_power: result[0][x].Phase_1_power,
+          Total_system_power_factor: result[0][x].Total_system_power_factor,
+          Phase_2_volt_amps: result[0][x].Phase_2_volt_amps,
+          Phase_2_power: result[0][x].Phase_2_power,
+          Phase_3_power: result[0][x].Phase_3_power,
+          power_consumed : result[0][x].power_consumed,
+          Phase_3_volt_amps : result[0][x].Phase_3_volt_amps,
+          power_diff : diff
+
+      });
